@@ -47,18 +47,18 @@ namespace DatingApp.API.Data
             return true;
         }
 
-        public async Task<User> Register(User user, string password)
+        public async Task<User> Register(User newUser, string password)
         {
             byte[] passwordHash, passwordSalt;
             CreatePasswordHash(password, out passwordHash, out passwordSalt);
 
-            user.PasswordHash = passwordHash;
-            user.PasswordSalt = passwordSalt;
+            newUser.PasswordHash = passwordHash;
+            newUser.PasswordSalt = passwordSalt;
 
-            await _context.Users.AddAsync(user);
+            await _context.Users.AddAsync(newUser);
             await _context.SaveChangesAsync();
 
-            return user;
+            return newUser;
         }
 
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
