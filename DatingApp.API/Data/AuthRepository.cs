@@ -30,15 +30,15 @@ namespace DatingApp.API.Data
 
         private bool PasswordHashVerified(string password, byte[] passwordHash, byte[] passwordSalt)
         {
-            using (HMACSHA512 userHMAC = new HMACSHA512(passwordSalt))
+            using (HMACSHA512 hmac = new HMACSHA512(passwordSalt))
             {
-                byte[] computedHash = userHMAC.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+                byte[] computedHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
 
                 //Compare each byte in both hashes
                 for (int i = 0; i < computedHash.Length; i++)
                 {
                     //if password hashes don't match, password is incorrect
-                    if (computedHash[i] != userHMAC.Hash[i])
+                    if (computedHash[i] != hmac.Hash[i])
                         return false;
                 }
             }
@@ -63,10 +63,10 @@ namespace DatingApp.API.Data
 
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
-            using (HMACSHA512 newUserHMAC = new HMACSHA512())
+            using (HMACSHA512 hmac = new HMACSHA512())
             {
-               passwordSalt = newUserHMAC.Key;
-               passwordHash = newUserHMAC.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+               passwordSalt = hmac.Key;
+               passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
             }
         }
 
