@@ -16,9 +16,12 @@ export class HomeComponent implements OnInit {
     this.getValues();
   }
 
-  registerToggle() {
-    this.registerMode = !this.registerMode;
-    console.log('registerMode: ' + this.registerMode);
+  activateRegisterMode() {
+    this.registerMode = true;
+  }
+
+  deactivateRegisterMode(registerMode: boolean) {
+    this.registerMode = registerMode; // registerMode should be emitted as false from register component
   }
 
   getValues() {
