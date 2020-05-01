@@ -50,7 +50,7 @@ namespace DatingApp.API.Controllers
 
             User createdUser = await _authRepo.Register(userToCreate, userRegisterDTO.Password);
 
-            //Temporary, in development
+            // Temporary, in development
             return StatusCode(201);
         }
 
@@ -85,7 +85,7 @@ namespace DatingApp.API.Controllers
             var token =  tokenHandler.CreateToken(tokenDescriptor);
             /*--------------------Create a Token--------------------*/
 
-            //Want to return the token as an object to the client
+            // Want to return the token as an object to the client
             return Ok(new {
                 token = tokenHandler.WriteToken(token)
             });
