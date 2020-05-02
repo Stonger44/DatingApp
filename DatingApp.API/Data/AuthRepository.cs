@@ -38,7 +38,7 @@ namespace DatingApp.API.Data
                 for (int i = 0; i < computedHash.Length; i++)
                 {
                     //if password hashes don't match, password is incorrect
-                    if (computedHash[i] != hmac.Hash[i])
+                    if (computedHash[i] != passwordHash[i])
                         return false;
                 }
             }
