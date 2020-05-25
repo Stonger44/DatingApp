@@ -2,7 +2,7 @@ using System;
 
 namespace DatingApp.API.DTOs
 {
-    public class UserForListDTO
+    public class UserListDTO
     {
         public int Id { get; set; }
         public string Username { get; set; }
