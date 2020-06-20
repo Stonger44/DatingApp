@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,6 +24,8 @@ import { appRoutes } from './routes';
 import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
 import { MemberListResolver } from './_resolvers/member-list.resolver';
 import { MemberEditResolver } from './_resolvers/member-edit-resolver';
+import { AuthGuard } from './_guards/auth.guard';
+import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 
 export function appModuleTokenGetter() {
    return localStorage.getItem('token');
@@ -63,7 +65,9 @@ export function appModuleTokenGetter() {
       ErrorInterceptorProvider,
       MemberDetailResolver,
       MemberListResolver,
-      MemberEditResolver
+      MemberEditResolver,
+      AuthGuard,
+      PreventUnsavedChanges
    ],
    bootstrap: [
       AppComponent
